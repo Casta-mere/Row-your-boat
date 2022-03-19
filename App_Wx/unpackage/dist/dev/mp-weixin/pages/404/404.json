@@ -1,4 +1,5 @@
 {
   "navigationBarTitleText": "404 Not Found",
+  "enablePullDownRefresh": true,
   "usingComponents": {}
 }

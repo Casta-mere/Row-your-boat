@@ -14,7 +14,7 @@
             "list": [
                 {
                     "name": "",
-                    "pathName": "pages/index/index",
+                    "pathName": "pages/index/indexs",
                     "query": "",
                     "scene": null,
                     "launchMode": "default"

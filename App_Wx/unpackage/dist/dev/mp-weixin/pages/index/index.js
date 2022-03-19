@@ -136,7 +136,8 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+//
 //
 //
 //
@@ -149,11 +150,27 @@ var _default =
 {
   data: function data() {
     return {
-      title: "Crazy frog" };
+      title: "Crazy frog",
+      url: "/pages/404/404" };
 
   },
-  onLoad: function onLoad() {},
+  onShow: function onShow() {
+    console.log("Index page show");
+  },
+  onPullDownRefresh: function onPullDownRefresh() {
+    console.log("Index page onPullDownRefresh");
+    var timer = setTimeout(function () {
+      clearTimeout(timer);
+      console.log("back to index");
+      uni.switchTab({
+        url: "/pages/index/index",
+        animationType: "pop-in",
+        animationDuration: 300 });
+
+    }, 2000);
+  },
   methods: {} };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 /* 18 */

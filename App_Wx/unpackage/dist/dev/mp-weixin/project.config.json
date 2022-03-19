@@ -45,8 +45,6 @@
     "libVersion": "",
     "appid": "wxcf3775ff554b1215",
     "projectname": "App_Wx",
-    "simulatorType": "wechat",
-    "simulatorPluginLibVersion": {},
     "condition": {
         "search": {
             "list": []

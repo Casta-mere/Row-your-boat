@@ -4,6 +4,7 @@
     <view class="text-area">
       <text class="title">{{ title }} is Crazy \n</text>
     </view>
+	<navigator :url="url">to 404</navigator>
   </view>
 </template>
 
@@ -12,9 +13,24 @@ export default {
   data() {
     return {
       title: "Crazy frog",
+	  url: "/pages/404/404"
     };
   },
-  onLoad() {},
+  onShow() {
+    console.log("Index page show");
+  },
+  onPullDownRefresh() {
+    console.log("Index page onPullDownRefresh");
+    let timer = setTimeout(() => {
+      clearTimeout(timer);
+      console.log("back to index");
+      uni.switchTab({
+        url: "/pages/index/index",
+        animationType: "pop-in",
+        animationDuration: 300
+      });
+    }, 2000);
+  },
   methods: {},
 };
 </script>

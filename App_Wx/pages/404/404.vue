@@ -1,6 +1,6 @@
 <template>
   <view class="content">
-    <h1>404 not found!</h1>
+    <text>404 not found!</text>
   </view>
 </template>
 
@@ -11,7 +11,17 @@ export default {
       title: "404 not found!",
     };
   },
-  onload() {},
+  onShow() {
+    let timer = setTimeout(() => {
+      clearTimeout(timer);
+      console.log("back to index");
+      uni.switchTab({
+        url: "/pages/index/index",
+        animationType: "pop-in",
+        animationDuration: 300
+      });
+    }, 2000);
+  },
   methods: {},
 };
 </script>

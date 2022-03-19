@@ -1,1 +1,1 @@
-<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title+" is Crazy \n"}}</text></view></view>
+<view class="content"><image class="logo" src="/static/logo.png"></image><view class="text-area"><text class="title">{{title+" is Crazy \n"}}</text></view><navigator url="{{url}}">to 404</navigator></view>
