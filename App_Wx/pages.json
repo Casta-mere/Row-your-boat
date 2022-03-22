@@ -12,13 +12,6 @@
             "enablePullDownRefresh": true
         }
     }, {
-        "path": "pages/Find/Find",
-        "style": {
-            "navigationBarTitleText": "Find",
-            "enablePullDownRefresh": false
-        }
-
-    }, {
         "path": "pages/Me/Me",
         "style": {
             "navigationBarTitleText": "Me",
@@ -44,22 +37,17 @@
         "color": "#1e1e1e",
         "selectedColor": "#68c984",
         "borderStyle": "white",
-        "backgroundColor": "#f6fff1",
+        "backgroundColor": "#e1dfe1",
         "list": [{
             "pagePath": "pages/index/index",
-            "text": "首页",
-            "iconPath": "static/img/home.png",
-            "selectedIconPath": "static/img/active.png"
-        }, {
-            "pagePath": "pages/Find/Find",
-            "text": "发现",
-            "iconPath": "static/img/find.png",
-            "selectedIconPath": "static/img/active.png"
+            "text": "",
+            "iconPath": "static/img/Home.png",
+            "selectedIconPath": "static/img/active_home.png"
         }, {
             "pagePath": "pages/Me/Me",
-            "text": "我的",
-            "iconPath": "static/img/me.png",
-            "selectedIconPath": "static/img/active.png"
+            "text": "",
+            "iconPath": "static/img/Me.png",
+            "selectedIconPath": "static/img/active_me.png"
         }]
     }
 }

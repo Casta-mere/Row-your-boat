@@ -4,7 +4,7 @@
     <view class="text-area">
       <text class="title">{{ title }} is Crazy \n</text>
     </view>
-	<navigator :url="url">to 404</navigator>
+    <navigator :url="url">to 404</navigator>
   </view>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   data() {
     return {
       title: "Crazy frog",
-	  url: "/pages/404/404"
+      url: "/pages/404/404",
     };
   },
   onShow() {
@@ -27,7 +27,7 @@ export default {
       uni.switchTab({
         url: "/pages/index/index",
         animationType: "pop-in",
-        animationDuration: 300
+        animationDuration: 300,
       });
     }, 2000);
   },
