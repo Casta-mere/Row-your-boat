@@ -5,6 +5,9 @@
       <text class="title">{{ title }} is Crazy \n</text>
     </view>
     <navigator :url="url">to 404</navigator>
+    <view>
+      <navigater url="/pages/Me/Me">前往我的</navigater>
+    </view>
   </view>
 </template>
 

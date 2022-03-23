@@ -141,6 +141,7 @@ if (uni.restoreGlobal) {
 __definePage('pages/index/index', function () {return Vue.extend(__webpack_require__(/*! pages/index/index.vue?mpType=page */ 2).default);});
 __definePage('pages/404/404', function () {return Vue.extend(__webpack_require__(/*! pages/404/404.vue?mpType=page */ 14).default);});
 __definePage('pages/Me/Me', function () {return Vue.extend(__webpack_require__(/*! pages/Me/Me.vue?mpType=page */ 22).default);});
+__definePage('/subPackages/Question_1/Question_1', function () {return Vue.extend(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '/subPackages/Question_1/Question_1.vue?mpType=page'"); e.code = 'MODULE_NOT_FOUND'; throw e; }())).default);});
 
 /***/ }),
 /* 2 */
@@ -244,7 +245,13 @@ var render = function() {
       ),
       _c("v-uni-navigator", { attrs: { url: _vm._$g(4, "a-url"), _i: 4 } }, [
         _vm._v("to 404")
-      ])
+      ]),
+      _c(
+        "v-uni-view",
+        { attrs: { _i: 5 } },
+        [_c("navigater", { attrs: { _i: 6 } }, [_vm._v("前往我的")])],
+        1
+      )
     ],
     1
   )
