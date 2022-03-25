@@ -21,7 +21,7 @@
 	}],
 
 	"subPackages": [{
-		"root": "/subPackages",
+		"root": "subPackages",
 		"pages": [{
 			"path": "Question_1/Question_1",
 			"style": {

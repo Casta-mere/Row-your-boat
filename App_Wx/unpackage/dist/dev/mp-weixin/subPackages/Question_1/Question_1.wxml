@@ -1,1 +1,3 @@
-<view><text>Question_1</text></view>
+<scroll-view class="main"><view><image class="img" src="/static/Question/Q1/Question.png"></image></view><text class="Front">延安革命纪念馆</text><text>位于陕西省延安市宝塔区西北延河东岸，为国家AAAA级景区。整个纪念馆外观朴素大方，结构紧凑，高大宏伟，具有传统的民族风格，展馆正门上方悬挂着红色匾牌，上有郭沫若1971年来延参观时题写的馆名。\n
+    馆内主要介绍1937年10月至1948年3月将近12年间，党中央和毛泽东同志在延安和陕甘宁边区领导中国人民英勇斗争的光辉历史，同时介绍了毛泽东、刘少奇、周恩来、朱德等老一辈与无产阶级革命家的丰功伟绩，介绍了马克思列宁主义和中国革命具体实践相结合的毛泽东思想。</text><text>位于陕西省延安市宝塔区西北延河东岸，为国家AAAA级景区。整个纪念馆外观朴素大方，结构紧凑，高大宏伟，具有传统的民族风格，展馆正门上方悬挂着红色匾牌，上有郭沫若1971年来延参观时题写的馆名。\n
+    馆内主要介绍1937年10月至1948年3月将近12年间，党中央和毛泽东同志在延安和陕甘宁边区领导中国人民英勇斗争的光辉历史，同时介绍了毛泽东、刘少奇、周恩来、朱德等老一辈与无产阶级革命家的丰功伟绩，介绍了马克思列宁主义和中国革命具体实践相结合的毛泽东思想。</text><view><button data-event-opts="{{[['tap',[['back',['$event']]]]]}}" class="button" bindtap="__e">◀返回首页</button><button data-event-opts="{{[['tap',[['back',['$event']]]]]}}" class="button" style="right:20px;" bindtap="__e">下一关卡▶</button></view></scroll-view>

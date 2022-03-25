@@ -5,9 +5,11 @@
       <text class="title">{{ title }} is Crazy \n</text>
     </view>
     <navigator :url="url">to 404</navigator>
-    <view>
-      <navigater url="/pages/Me/Me">前往我的</navigater>
-    </view>
+    <view class="question">
+      <navigator url="/subPackages/Question_1/Question_1"
+        >前往问题1</navigator
+      ></view
+    >
   </view>
 </template>
 
@@ -63,5 +65,10 @@ export default {
 .title {
   font-size: 36rpx;
   color: #8f8f94;
+}
+
+.question {
+  font-size: 50rpx;
+  color: brown;
 }
 </style>

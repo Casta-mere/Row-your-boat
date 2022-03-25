@@ -1,43 +1,44 @@
 {
-  "pages": [
-    "pages/index/index",
-    "pages/404/404",
-    "pages/Me/Me"
-  ],
-  "subPackages": [
-    {
-      "root": "/subPackages",
-      "pages": [
-        "Question_1/Question_1"
-      ]
-    }
-  ],
-  "window": {
-    "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "uni-app",
-    "navigationBarBackgroundColor": "#F8F8F8",
-    "backgroundColor": "#F8F8F8"
-  },
-  "tabBar": {
-    "color": "#1e1e1e",
-    "selectedColor": "#68c984",
-    "borderStyle": "white",
-    "backgroundColor": "#e1dfe1",
-    "list": [
-      {
-        "pagePath": "pages/index/index",
-        "text": "",
-        "iconPath": "static/img/Home.png",
-        "selectedIconPath": "static/img/active_home.png"
-      },
-      {
-        "pagePath": "pages/Me/Me",
-        "text": "",
-        "iconPath": "static/img/Me.png",
-        "selectedIconPath": "static/img/active_me.png"
-      }
-    ]
-  },
-  "permission": {},
-  "usingComponents": {}
+    "pages": [
+        "pages/index/index",
+        "pages/404/404",
+        "pages/Me/Me"
+    ],
+    "subPackages": [
+        {
+            "root": "subPackages",
+            "pages": [
+                "Question_1/Question_1"
+            ]
+        }
+    ],
+    "window": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "uni-app",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "tabBar": {
+        "color": "#1e1e1e",
+        "selectedColor": "#68c984",
+        "borderStyle": "white",
+        "backgroundColor": "#e1dfe1",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "",
+                "iconPath": "static/img/Home.png",
+                "selectedIconPath": "static/img/active_home.png"
+            },
+            {
+                "pagePath": "pages/Me/Me",
+                "text": "",
+                "iconPath": "static/img/Me.png",
+                "selectedIconPath": "static/img/active_me.png"
+            }
+        ]
+    },
+    "permission": {},
+    "usingComponents": {},
+    "sitemapLocation": "sitemap.json"
 }
