@@ -2,7 +2,7 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "红旅",
+			"navigationBarTitleText": "Boat Renting Server",
 			"enablePullDownRefresh": true
 		}
 	}, {
@@ -14,7 +14,7 @@
 	}, {
 		"path": "pages/Me/Me",
 		"style": {
-			"navigationBarTitleText": "红旅",
+			"navigationBarTitleText": "Boat Renting Client",
 			"enablePullDownRefresh": false
 
 		}

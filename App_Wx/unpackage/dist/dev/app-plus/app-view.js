@@ -126,14 +126,33 @@ if (typeof plus !== 'undefined') {
 if (typeof Promise !== 'undefined' && !Promise.prototype.finally) {
   Promise.prototype.finally = function (callback) {
     var promise = this.constructor;
-    return this.then(
-    function (value) {return promise.resolve(callback()).then(function () {return value;});},
-    function (reason) {return promise.resolve(callback()).then(function () {
+    return this.then(function (value) {
+      return promise.resolve(callback()).then(function () {
+        return value;
+      });
+    }, function (reason) {
+      return promise.resolve(callback()).then(function () {
         throw reason;
-      });});
-
+      });
+    });
   };
 }
+if (typeof uni !== 'undefined' && uni && uni.requireGlobal) {
+  var global = uni.requireGlobal();
+  ArrayBuffer = global.ArrayBuffer;
+  Int8Array = global.Int8Array;
+  Uint8Array = global.Uint8Array;
+  Uint8ClampedArray = global.Uint8ClampedArray;
+  Int16Array = global.Int16Array;
+  Uint16Array = global.Uint16Array;
+  Int32Array = global.Int32Array;
+  Uint32Array = global.Uint32Array;
+  Float32Array = global.Float32Array;
+  Float64Array = global.Float64Array;
+  BigInt64Array = global.BigInt64Array;
+  BigUint64Array = global.BigUint64Array;
+}
+
 window.__uniConfig = { "window": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };
 if (uni.restoreGlobal) {
   uni.restoreGlobal(weex, plus, setTimeout, clearTimeout, setInterval, clearInterval);
@@ -224,7 +243,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-uni-view",
+    "uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c("v-uni-image", {
@@ -232,7 +251,7 @@ var render = function() {
         attrs: { src: "/static/logo.png", _i: 1 }
       }),
       _c(
-        "v-uni-view",
+        "uni-view",
         { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
         [
           _c(
@@ -247,7 +266,7 @@ var render = function() {
         _vm._v("to 404")
       ]),
       _c(
-        "v-uni-view",
+        "uni-view",
         { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
         [
           _c(
@@ -976,7 +995,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-uni-view",
+    "uni-view",
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [_c("v-uni-text", { attrs: { _i: 1 } }, [_vm._v("404 not found!")])],
     1
@@ -1154,7 +1173,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "v-uni-view",
+    "uni-view",
     { attrs: { _i: 0 } },
     [_c("v-uni-text", { attrs: { _i: 1 } }, [_vm._v("我")])],
     1
@@ -1286,7 +1305,7 @@ var render = function() {
     { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c(
-        "v-uni-view",
+        "uni-view",
         { attrs: { _i: 1 } },
         [
           _c("v-uni-image", {
@@ -1310,7 +1329,7 @@ var render = function() {
         )
       ]),
       _c(
-        "v-uni-view",
+        "uni-view",
         { attrs: { _i: 6 } },
         [
           _c(
