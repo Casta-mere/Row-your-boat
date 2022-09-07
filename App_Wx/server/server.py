@@ -27,8 +27,3 @@ class Control():
 
     def __init__(self,arr):
         
-
-
-
-
-a
