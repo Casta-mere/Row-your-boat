@@ -6,10 +6,9 @@
     </view>
     <navigator :url="url">to 404</navigator>
     <view class="question">
-      <navigator url="/subPackages/Question_1/Question_1"
-        >前往问题1</navigator
-      ></view
-    >
+      <navigator url="/subPackages/Question_1/Question_1">前往问题1</navigator>
+      <button @click="getuserList()">114514</button>
+    </view>
   </view>
 </template>
 
@@ -36,7 +35,18 @@ export default {
       });
     }, 2000);
   },
-  methods: {},
+
+  methods: {
+    getuserList() {
+      this.$axios.post("http://10.96.229.74:8888/",{message:"hell"}).then((res) => {
+        const { status, data } = res;
+        if (status === 200) {
+          this.userList = data;
+          console.log(this.userList);
+        } else console.log("not success");
+      });
+    },
+  },
 };
 </script>
 

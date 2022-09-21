@@ -1,5 +1,8 @@
+from random import random
+from tracemalloc import start
 import boats
 import datetime
+import random
 
 def to_second(time):
     return time.hour * 3600 + time.minute * 60 + time.second
@@ -7,16 +10,19 @@ def to_second(time):
 if __name__ == "__main__":
     arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     control = boats.Control(arr)
-
-    i=to_second(datetime.datetime.strptime("2020-12-01 12:25:25", "%Y-%m-%d %H:%M:%S"))
-    # print(nowtime.strftime("%H:%M:%S"))
-    control.new_item(0, i)
-    control.end_item(0, to_second(datetime.datetime.now()))
+    for i in range(20):
+        start=(random.randint(6*3600,11*3600))
+        id=int(random.randint(0,9))
+        control.new_item(id,start)
+        control.end_item(id,start+random.randint(1*3600,6*3600))
+    for i in range(20):
+        start=(random.randint(12*3600,18*3600))
+        id=int(random.randint(0,9))
+        control.new_item(id,start)
+        control.end_item(id,start+random.randint(1*3600,6*3600))
+        
     control.show_all()
-    # control.new_item(0, 0)
-    # control.end_item(0, 100)
-    # control.new_item(0, 200)
-    # control.end_item(0, 246)
+    
 
 
     # control.show_all()

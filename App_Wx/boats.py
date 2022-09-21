@@ -1,3 +1,6 @@
+import datetime
+
+
 class Boat():
     def __init__(self, state):
         self.state = state
@@ -43,6 +46,10 @@ class Item():
     def end(self, end_time):
         self.end_time = end_time
         self.time = self.end_time - self.start_time
+        if(end_time<3600*12):
+            self.noon="AM"
+        else:
+            self.noon="PM"
 
     def get_time(self):
         return self.time
