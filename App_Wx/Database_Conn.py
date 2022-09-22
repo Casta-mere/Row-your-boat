@@ -52,12 +52,12 @@ class mysql():
         cursor.close()
 
     def update_table(self,table_name,item):
-        conn=pymysql.connect(host='localhost',user='root',password='',db='bilibili_up',charset='utf8')
+        conn=pymysql.connect(host='localhost',user='root',password='',db=self.database_name,charset='utf8')
         cursor=conn.cursor()
         values=""
         for i in item:
-            values+=f'"{i}",'
-        sql=f'insert into `{table_name}` values({values});'
+            values+=f'{i},'
+        sql=f'insert into `{table_name}` values({values[:-1]});'
         try:
             cursor.execute(sql)
             conn.commit()
@@ -65,3 +65,13 @@ class mysql():
             conn.rollback()
         cursor.close()
         conn.close()
+    
+    def get_data(self,table_name):
+        conn=pymysql.connect(host='localhost',user='root',password='',db=self.database_name,charset='utf8')
+        cursor=conn.cursor()
+        sql=f"select * from `{table_name}`;"
+        cursor.execute(sql)
+        data=cursor.fetchall()
+        cursor.close()
+        conn.close()
+        return data
