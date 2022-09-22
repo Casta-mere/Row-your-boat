@@ -1,5 +1,5 @@
-import datetime
 
+import Database_Conn as db
 
 class Boat():
     def __init__(self, state):
@@ -56,7 +56,7 @@ class Item():
 
 
 class Control():
-    num = 10  # ten boats
+    num = 6  # six boats
 
     def __init__(self, arr):
         self.boats = []
@@ -79,12 +79,23 @@ class Control():
         else:
             return("Boat %d is't out" % no)
 
-    def show_state(self):
+    def get_state(self):
         ans = []
         for i in range(self.num):
             ans.append(self.cases[i].state)
         return ans
 
+    def show_state(self):
+        print(self.get_state())
+
+
     def show_all(self):
         for i in range(self.num):
-            self.cases[i].show_Case(i)
+            self.show_case(i)
+
+    def show_case(self, no):
+        self.cases[no].show_Case(no)
+
+if "__name__" == "__main__":
+    control = Control([0, 0, 0, 0, 0, 0])
+    
