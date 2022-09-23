@@ -80,6 +80,7 @@ class Control():
         for i in range(self.num):
             self.boats.append(Boat(arr[i]))
             self.cases.append(Case(i))
+        self.pre_load()
 
 
     def new_item(self, no, start_time):
@@ -124,28 +125,27 @@ class Control():
         for i in data:
             self.db.update_table(self.table,i)
     
-    def down_load(self):
-        data=list(self.db.get_data(self.table))
-        for i in data:
-            self.case(i[0],i[1],i[2])
-        
+    def pre_load(self):
+        try:
+            data=list(self.db.get_data(self.table))
+            for i in data:
+                self.case(i[0],i[1],i[2])
+        except:
+            self.db.Create_table(self.table,self.colunms)
 
     def case(self,no,st,et):
         self.new_item(no,st)
         self.end_item(no,et)
 
+    def random(self):
+        for i in range(self.num):
+            start_time=random.randint(3600*6,3600*7)
+            while(start_time<3600*24):
+                end_time=start_time+random.randint(3600*0.5,3600*3)
+                self.case(i,start_time,end_time)
+                start_time=end_time+random.randint(3600*0.5,3600*3)
+            
 if __name__ == "__main__":
     control = Control([0, 0, 0, 0, 0, 0])
-    
-    control.down_load()
-    for i in range(20):
-        start = (random.randint(6*3600, 11*3600))
-        id = int(random.randint(0, 5))
-        control.new_item(id, start)
-        control.end_item(id, start+random.randint(1*3600, 6*3600))
-    for i in range(20):
-        start = (random.randint(12*3600, 18*3600))
-        id = int(random.randint(0, 5))
-        control.new_item(id, start)
-        control.end_item(id, start+random.randint(1*3600, 6*3600))
+    control.random()
     control.up_load()
