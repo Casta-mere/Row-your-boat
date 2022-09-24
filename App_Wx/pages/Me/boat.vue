@@ -1,46 +1,67 @@
 <template>
   <view class="content">
-    <image class="logo" :src="src"></image>
-    <view class="title">My rent {{ id }}</view>
+    <v-card>
+      <image :src="src"> </image>
+      <v-card-title>You are now renting boat #{{ id }}</v-card-title>
 
-    <v-card class="mx-auto" max-width="400">
-      <v-img
-        class="white--text align-end"
-        height="200px"
-        :src=src
-      >
-        <v-card-title>Top 10 Australian beaches</v-card-title>
-      </v-img>
-
-      <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+      <v-card-subtitle class="pb-0">Renting time is {{ time }}</v-card-subtitle>
 
       <v-card-text class="text--primary">
-        <div>Whitehaven Beach</div>
-
-        <div>Whitsunday Island, Whitsunday Islands</div>
+        <div>You have rented for {{ rent_time }} minute(s)</div>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn color="orange" text> Share </v-btn>
-
-        <v-btn color="orange" text> Explore </v-btn>
+        <v-btn class="button" rounded>Return</v-btn>
       </v-card-actions>
     </v-card>
   </view>
 </template>
 
 <script>
-// import { VCard, VImg, VCardTitle, VCardSubtitle, VCardText, VCardActions, VBtn } from "vuetify/lib";
 export default {
   data() {
     return {
       id: "",
       src: "",
+      time: "",
+      rent_time: 0,
     };
   },
   onShow() {
     this.id = this.$route.query.id;
     this.src = "/static/img/boats/Boat" + this.id + ".png";
+    this.time = this.nowtime();
+  },
+  mounted() {
+    let _this = this;
+    this.timer = setInterval(() => {
+      _this.rent_time = _this.rent_time + 1;
+    }, 60000);
+  },
+  methods: {
+    nowtime() {
+      var date = new Date();
+      var year = date.getFullYear();
+      var month = date.getMonth() + 1;
+      var day = date.getDate();
+      var hour = date.getHours();
+      var minute = date.getMinutes();
+      var second = date.getSeconds();
+      this.timeunix = Date.parse(date);
+      return (
+        year +
+        "-" +
+        month +
+        "-" +
+        day +
+        " " +
+        hour +
+        ":" +
+        minute +
+        ":" +
+        second
+      );
+    },
   },
 };
 </script>
@@ -48,8 +69,8 @@ export default {
 <style>
 .content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  /* flex-direction: column; */
+  /* align-items: center; */
   justify-content: center;
 }
 
@@ -75,5 +96,12 @@ export default {
 .question {
   font-size: 50rpx;
   color: brown;
+}
+
+.button {
+  color: #4caf50;
+  outline: none;
+  text-align: center;
+  margin: auto;
 }
 </style>
