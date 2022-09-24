@@ -92,7 +92,12 @@ export default {
         product.status = "Available";
         product.image = "/static/img/boats/Boat"+product.title[5]+".png";
       }
-      
+      this.$router.push({
+        path: "/pages/Me/boat",
+        query: {
+          id: product.title[5],
+        },
+      });
     },
   },
   onLoad() {

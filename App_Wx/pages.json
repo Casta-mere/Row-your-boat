@@ -18,6 +18,12 @@
 			"enablePullDownRefresh": false
 
 		}
+	}, {
+		"path": "pages/Me/boat",
+		"style": {
+			"navigationBarTitleText": "My Boat",
+			"enablePullDownRefresh": true
+		}
 	}],
 
 	"subPackages": [{
