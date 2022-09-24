@@ -8,7 +8,7 @@
 	}, {
 		"path": "pages/404/404",
 		"style": {
-			"navigationBarTitleText": "404 Not Found",
+			"navigationBarTitleText": "Warning!",
 			"enablePullDownRefresh": true
 		}
 	}, {

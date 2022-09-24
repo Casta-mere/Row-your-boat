@@ -45,6 +45,44 @@ class Case():
             st, et = i.output()
             ans.append([self.no, st, et])
         return ans
+    
+    def get_data(self):
+        ans=[]
+        self.amRT,self.amTT,self.amAT,self.MT=0,0,0,0
+        self.pmRT,self.pmTT,self.pmAT,self.Mt=0,0,0,0
+        for i in self.item:
+            
+            if(i.end_time==0):
+                print(i.output())
+                continue
+            if(i.noon=="AM"):
+                self.amTT+=i.time
+                self.amRT+=1
+                self.amAT=self.amTT//self.amRT
+                if(self.MT<i.time):
+                    self.MT=i.time
+            else:
+                self.pmTT+=i.time
+                self.pmRT+=1
+                self.pmAT=self.pmTT//self.pmRT
+                if(self.Mt<i.time):
+                    self.Mt=i.time
+        ans.append(self.no+1)
+        ans.append(self.state)
+        ans.append(self.number)
+        ans.append(self.time//60)
+        ans.append(self.averagetime//60)
+        ans.append(self.maxtime//60)
+        ans.append(self.amRT)
+        ans.append(self.amTT//60)
+        ans.append(self.amAT//60)
+        ans.append(self.MT//60)
+        ans.append(self.pmRT)
+        ans.append(self.pmTT//60)
+        ans.append(self.pmAT//60)
+        ans.append(self.Mt//60)
+        ans.append("*")
+        return ans
 
 
 class Item():
@@ -144,7 +182,13 @@ class Control():
                 end_time=start_time+random.randint(3600*0.5,3600*3)
                 self.case(i,start_time,end_time)
                 start_time=end_time+random.randint(3600*0.5,3600*3)
-            
+
+    def get_data(self):
+        ans=[]
+        for i in range(self.num):
+            ans.append(self.cases[i].get_data())
+        return ans
+
 if __name__ == "__main__":
     control = Control([0, 0, 0, 0, 0, 0])
     control.random()

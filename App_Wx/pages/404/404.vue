@@ -1,6 +1,7 @@
 <template>
   <view class="content">
-    <text>404 not found!</text>
+    <image class="logo" src="/static/warning.png"></image>
+    <text>Boat is not Available!</text>
   </view>
 </template>
 
@@ -8,7 +9,7 @@
 export default {
   data() {
     return {
-      title: "404 not found!",
+      title: "Warning!",
     };
   },
   onShow() {
@@ -16,7 +17,7 @@ export default {
       clearTimeout(timer);
       console.log("back to index");
       uni.switchTab({
-        url: "/pages/index/index",
+        url: "/pages/Me/Me",
         animationType: "pop-in",
         animationDuration: 300
       });
@@ -32,5 +33,15 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 50rpx;
+  color: red;
+}
+.logo {
+  height: 480rpx;
+  width: 520rpx;
+  margin-top: 100rpx;
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-bottom: 50rpx; */
 }
 </style>

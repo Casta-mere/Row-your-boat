@@ -57,6 +57,9 @@ class boat_server():
         elif(action=="L"):
             response_body=str(self.control.get_state())
             print(response_body)
+        elif(action=="D"):
+            response_body=str(self.control.get_data())
+            print(response_body)
         else :
             print("error")
         

@@ -30,6 +30,7 @@ export default {
       productList: [],
       renderImage: false,
       states: [],
+      dialog: false,
     };
   },
   methods: {
@@ -40,9 +41,7 @@ export default {
           const { status, data } = res;
           if (status === 200) {
             var string = data.toString();
-
             this.states = string.split(",");
-            console.log(this.states);
           } else console.log("not success");
         });
     },
@@ -106,7 +105,6 @@ export default {
           .then((res) => {
             const { status, data } = res;
             if (status === 200) {
-              console.log(data);
             } else console.log("not success");
           });
         product.status = "Unavailable";
@@ -119,15 +117,35 @@ export default {
         });
       } else {
         // this.$router.push({
-        //   path: "/pages/Me/boat",
-        //   query: {
-        //     id: product.title[5],
-        //   },
+        //   path: "/pages/404/404",
         // });
-        // product.status = "Available";
-        // product.image = "/static/img/boats/Boat" + product.title[5] + ".png";
+        this.$axios
+          .post("http://10.96.229.74:8888/", {
+            message: product.title + " " + "U",
+          })
+          .then((res) => {
+            const { status, data } = res;
+            if (status === 200) {
+              console.log(data);
+            } else console.log("not success");
+          });
+        product.status = "Available";
+        product.image = "/static/img/boats/Boat" + product.title[5] + ".png";
       }
     },
+  },
+  onShow() {
+    setTimeout(() => {
+      this.refresh();
+    }, 100);
+    // console.log(this.states);
+
+    setTimeout(() => {
+      this.loadData();
+    }, 200);
+    setTimeout(() => {
+      this.renderImage = true;
+    }, 300);
   },
   onLoad() {
     this.onShow();
@@ -142,19 +160,6 @@ export default {
           console.log(this.states);
         } else console.log("not success");
       });
-  },
-  onShow() {
-    setTimeout(() => {
-      this.refresh();
-    }, 50);
-    console.log(this.states);
-
-    setTimeout(() => {
-      this.loadData();
-    }, 100);
-    setTimeout(() => {
-      this.renderImage = true;
-    }, 150);
   },
 };
 </script>
