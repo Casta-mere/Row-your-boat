@@ -40,19 +40,28 @@ class boat_server():
         num,action=int(message.split(" ")[0][-1])-1,message.split(" ")[1]
         print(num,action)
 
-        if(action=="A"):
-            self.control.new_item(num,now())
-            self.control.show_state()        
-        elif(action=="U"):
-            self.control.end_item(num,now()+random.randint(0,3600))
-            self.control.show_case(num)
-            self.control.up_load()
-        else :
-            print("error")
+
+
         response_headers = "HTTP/1.1 200 OK\r\n"
         response_headers += "\r\n"
+
+        if(action=="A"):
+            self.control.new_item(num,now())
+            self.control.show_state() 
+            response_body = "msg received!"       
+        elif(action=="U"):
+            self.control.end_item(num,now())
+            self.control.show_case(num)
+            self.control.up_load()
+            response_body = "msg received!"
+        elif(action=="L"):
+            response_body=str(self.control.get_state())
+            print(response_body)
+        else :
+            print("error")
         
-        response_body = "msg received!"
+        
+  
         response = response_headers + response_body
         client.send(response.encode("utf-8")) 
     

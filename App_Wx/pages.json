@@ -15,7 +15,7 @@
 		"path": "pages/Me/Me",
 		"style": {
 			"navigationBarTitleText": "Boat Renting Client",
-			"enablePullDownRefresh": false
+			"enablePullDownRefresh": true
 
 		}
 	}, {

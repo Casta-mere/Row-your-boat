@@ -7,11 +7,11 @@
       <v-card-subtitle class="pb-0">Renting time is {{ time }}</v-card-subtitle>
 
       <v-card-text class="text--primary">
-        <div>You have rented for {{ rent_time }} minute(s)</div>
+        <div>Rented for {{ minute }} minute(s) {{second}} second(s) </div>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn class="button" rounded>Return</v-btn>
+        <v-btn class="button" rounded @click=returnboat()>Return</v-btn>
       </v-card-actions>
     </v-card>
   </view>
@@ -25,6 +25,8 @@ export default {
       src: "",
       time: "",
       rent_time: 0,
+      minute:0,
+      second:0,
     };
   },
   onShow() {
@@ -36,7 +38,9 @@ export default {
     let _this = this;
     this.timer = setInterval(() => {
       _this.rent_time = _this.rent_time + 1;
-    }, 60000);
+      _this.second = _this.rent_time%60;
+      _this.minute = (_this.rent_time-_this.second)/60;
+    }, 1000);
   },
   methods: {
     nowtime() {
@@ -62,6 +66,21 @@ export default {
         second
       );
     },
+    returnboat(){
+       this.$axios
+        .post("http://10.96.229.74:8888/", {
+          message: this.id + " " + "U",
+        })
+        .then((res) => {
+          const { status, data } = res;
+          if (status === 200) {
+            console.log(data);
+          } else console.log("not success");
+        });
+        this.$router.push({
+          path: "/pages/Me/Me",
+        });
+    }
   },
 };
 </script>

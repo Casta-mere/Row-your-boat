@@ -29,43 +29,64 @@ export default {
       title: "product-list",
       productList: [],
       renderImage: false,
+      states: [],
     };
   },
   methods: {
+    refresh() {
+      this.$axios
+        .post("http://10.96.229.74:8888/", { message: "0 L" })
+        .then((res) => {
+          const { status, data } = res;
+          if (status === 200) {
+            var string = data.toString();
+
+            this.states = string.split(",");
+            console.log(this.states);
+          } else console.log("not success");
+        });
+    },
     loadData(action = "add") {
+      this.productList = [];
       const data = [
         {
           image: "/static/img/boats/Boat1.png",
           title: "Boat#1",
-          status: "Available",
+          status: "",
         },
         {
           image: "/static/img/boats/Boat2.png",
           title: "Boat#2",
-          status: "Available",
+          status: "",
         },
         {
           image: "/static/img/boats/Boat3.png",
           title: "Boat#3",
-          status: "Available",
+          status: "",
         },
         {
           image: "/static/img/boats/Boat4.png",
           title: "Boat#4",
-          status: "Available",
+          status: "",
         },
         {
           image: "/static/img/boats/Boat5.png",
           title: "Boat#5",
-          status: "Available",
+          status: "",
         },
         {
           image: "/static/img/boats/Boat6.png",
           title: "Boat#6",
-          status: "Available",
+          status: "",
         },
       ];
-
+      for (let i = 0; i < 6; i++) {
+        if (this.states[i] == 0) data[i].status = "Available";
+        else {
+          data[i].status = "Unavailable";
+          data[i].image = "/static/img/boats2/Boat" + (i + 1) + ".png";
+        }
+      }
       if (action === "refresh") {
         this.productList = [];
       }
@@ -76,41 +97,64 @@ export default {
     },
     func(product) {
       console.log(product.title);
-      this.$axios
-        .post("http://10.96.229.74:8888/", { message: product.title+" "+product.status[0] })
-        .then((res) => {
-          const { status, data } = res;
-          if (status === 200) {
-            this.userList = data;
-            console.log(this.userList);
-          } else console.log("not success");
-        });
+
       if (product.status == "Available") {
+        this.$axios
+          .post("http://10.96.229.74:8888/", {
+            message: product.title + " " + product.status[0],
+          })
+          .then((res) => {
+            const { status, data } = res;
+            if (status === 200) {
+              console.log(data);
+            } else console.log("not success");
+          });
         product.status = "Unavailable";
-        product.image = "/static/img/boats2/Boat"+product.title[5]+".png";
+        product.image = "/static/img/boats2/Boat" + product.title[5] + ".png";
+        this.$router.push({
+          path: "/pages/Me/boat",
+          query: {
+            id: product.title[5],
+          },
+        });
       } else {
-        product.status = "Available";
-        product.image = "/static/img/boats/Boat"+product.title[5]+".png";
+        // this.$router.push({
+        //   path: "/pages/Me/boat",
+        //   query: {
+        //     id: product.title[5],
+        //   },
+        // });
+        // product.status = "Available";
+        // product.image = "/static/img/boats/Boat" + product.title[5] + ".png";
       }
-      this.$router.push({
-        path: "/pages/Me/boat",
-        query: {
-          id: product.title[5],
-        },
-      });
     },
   },
   onLoad() {
-    this.loadData();
-    setTimeout(() => {
-      this.renderImage = true;
-    }, 300);
+    this.onShow();
   },
   onPullDownRefresh() {
-    this.loadData("refresh");
+    this.$axios
+      .post("http://10.96.229.74:8888/", { message: "0 L" })
+      .then((res) => {
+        const { status, data } = res;
+        if (status === 200) {
+          this.states = data;
+          console.log(this.states);
+        } else console.log("not success");
+      });
+  },
+  onShow() {
     setTimeout(() => {
-      uni.stopPullDownRefresh();
-    }, 2000);
+      this.refresh();
+    }, 50);
+    console.log(this.states);
+
+    setTimeout(() => {
+      this.loadData();
+    }, 100);
+    setTimeout(() => {
+      this.renderImage = true;
+    }, 150);
   },
 };
 </script>
