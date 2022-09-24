@@ -3,35 +3,34 @@
     <image class="logo" :src="src"></image>
     <view class="title">My rent {{ id }}</view>
 
-    <el-card>
-      <div slot="header" class="clearfix">
-        <i class="el-icon-user" /><span style="margin-left: 5px">123</span>
-        <div
-          style="display: inline-block; float: right; cursor: pointer"
-          @click="doEdit(id)"
-        >
-          <el-tooltip effect="dark" content="编辑角色" placement="top">
-            <i class="el-icon-edit-outline" style="margin-left: 15px" />
-          </el-tooltip>
-        </div>
-      </div>
-      <div>
-        <ul class="role-info">
-          <li>
-            <div class="role-left">描述信息：</div>
-          </li>
-          <li>
-            <div class="role-left">
-              创建时间：{{ src }}
-            </div>
-          </li>
-        </ul>
-      </div>
-    </el-card>
+    <v-card class="mx-auto" max-width="400">
+      <v-img
+        class="white--text align-end"
+        height="200px"
+        :src=src
+      >
+        <v-card-title>Top 10 Australian beaches</v-card-title>
+      </v-img>
+
+      <v-card-subtitle class="pb-0">Number 10</v-card-subtitle>
+
+      <v-card-text class="text--primary">
+        <div>Whitehaven Beach</div>
+
+        <div>Whitsunday Island, Whitsunday Islands</div>
+      </v-card-text>
+
+      <v-card-actions>
+        <v-btn color="orange" text> Share </v-btn>
+
+        <v-btn color="orange" text> Explore </v-btn>
+      </v-card-actions>
+    </v-card>
   </view>
 </template>
 
 <script>
+// import { VCard, VImg, VCardTitle, VCardSubtitle, VCardText, VCardActions, VBtn } from "vuetify/lib";
 export default {
   data() {
     return {

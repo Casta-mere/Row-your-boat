@@ -1,19 +1,18 @@
 import App from './App'
 
-
 import axios from 'axios'
 import VueAxios from "vue-axios";
-
-Vue.use(VueAxios, axios)
-
-// #ifndef VUE3
 import Vue from 'vue'
+import vuetify from './plugins/vuetify';
+// #ifndef VUE3
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 Vue.prototype.$axios = axios
 
 App.mpType = 'app'
 const app = new Vue({
-    ...App
+    ...App,
+    vuetify
 })
 app.$mount()
     // #endif
