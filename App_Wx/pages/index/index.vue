@@ -69,6 +69,7 @@ export default {
               item1.AP = "Total";
               if (value[1] == 0) item1.s = "Available";
               else if (value[1] == 1) item1.s = "Unavailable";
+              else if(value[1]==2) item1.s="Lost";
               item1.RT = value[2];
               item1.TT = value[3];
               item1.AT = value[4];

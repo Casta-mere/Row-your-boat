@@ -7,11 +7,20 @@
       <v-card-subtitle class="pb-0">Renting time is {{ time }}</v-card-subtitle>
 
       <v-card-text class="text--primary">
-        <div>Rented for {{ minute }} minute(s) {{second}} second(s) </div>
+        <div>Rented for {{ minute }} minute(s) {{ second }} second(s)</div>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn class="button" rounded @click=returnboat()>Return</v-btn>
+        <v-btn class="button" rounded @click="returnboat()">Return</v-btn>
+      </v-card-actions>
+      <v-card-title v-if="paging ^ warning" class="pb-2"
+        >Reply in 2 min!</v-card-title
+      >
+      <v-card-title v-if="warning" class="pb-3">Reply in 2 min!</v-card-title>
+      <v-card-actions>
+        <v-btn class="button" v-if="paging" rounded @click="answer()"
+          >Copy!</v-btn
+        >
       </v-card-actions>
     </v-card>
   </view>
@@ -25,21 +34,48 @@ export default {
       src: "",
       time: "",
       rent_time: 0,
-      minute:0,
-      second:0,
+      minute: 0,
+      second: 0,
+      paging: false,
+      warning: false,
     };
   },
   onShow() {
     this.id = this.$route.query.id;
+    this.rent_time = this.$route.query.rent_time;
     this.src = "/static/img/boats/Boat" + this.id + ".png";
-    this.time = this.nowtime();
+    if (this.$route.query.type == 1) this.time = this.nowtime();
+    else this.time = this.$route.query.time;
+    let timer = setTimeout(() => {
+      clearTimeout(timer);
+      this.paging = true;
+    }, 10000);
   },
   mounted() {
     let _this = this;
-    this.timer = setInterval(() => {
+    let timer = setInterval(() => {
       _this.rent_time = _this.rent_time + 1;
-      _this.second = _this.rent_time%60;
-      _this.minute = (_this.rent_time-_this.second)/60;
+      _this.second = _this.rent_time % 60;
+      _this.minute = (_this.rent_time - _this.second) / 60;
+    }, 1000);
+    let timer2 = setInterval(() => {
+      if (!this.paging) {
+        this.warning = false;
+      }
+      if (this.paging) {
+        let timer3 = setTimeout(() => {
+          clearTimeout(timer3);
+          if (this.paging) this.warning = true;
+        }, 2000);
+      }
+      if (this.paging&&this.warning) {
+        let timer4 = setTimeout(() => {
+          clearTimeout(timer4);
+          if (this.paging&this.warning)
+            console.log("You have not replied in 2 minutes!");
+            clearTimeout(timer2);
+        }, 2000);
+      }
     }, 1000);
   },
   methods: {
@@ -66,8 +102,8 @@ export default {
         second
       );
     },
-    returnboat(){
-       this.$axios
+    returnboat() {
+      this.$axios
         .post("http://10.96.229.74:8888/", {
           message: this.id + " " + "U",
         })
@@ -77,10 +113,17 @@ export default {
             console.log(data);
           } else console.log("not success");
         });
-        this.$router.push({
-          path: "/pages/Me/Me",
-        });
-    }
+      this.$router.push({
+        path: "/pages/Me/Me",
+      });
+    },
+    answer() {
+      this.paging = false;
+      let timer = setTimeout(() => {
+        clearTimeout(timer);
+        this.paging = true;
+      }, 10000);
+    },
   },
 };
 </script>
@@ -118,47 +161,59 @@ export default {
 }
 
 .button {
-    border-radius: 4px;
-    background-color: #f4511e;
-    border: none;
-    color: black;
-    text-align: center;
-    font-size: 10px;
-    padding: 15px;
-    width: 150px;
-    transition: all 0.5s;
-    cursor: pointer;
-    margin: auto;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: black;
+  text-align: center;
+  font-size: 10px;
+  padding: 15px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: auto;
 }
 .button span {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    transition: 0.5s;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
 }
 
 .button span:after {
-    content: '\00bb';
-    position: absolute;
-    opacity: 0;
-    top: 0;
-    right: -20px;
-    transition: 0.5s;
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
 }
 
 .button:hover span {
-    padding-right: 25px;
+  padding-right: 25px;
 }
 
 .button:hover span:after {
-    opacity: 1;
-    right: 0;
+  opacity: 1;
+  right: 0;
 }
 
 .button:active {
-    background-color: #0e5390;
-    color:white;
-    box-shadow: 0 5px #666;
-    transform: translateY(5px);
+  background-color: #0e5390;
+  color: white;
+  box-shadow: 0 5px #666;
+  transform: translateY(5px);
+}
+.pb-2 {
+  color: red;
+  text-align: center;
+  margin: auto;
+  /* background-color: red; */
+}
+.pb-3 {
+  color: black;
+  text-align: center;
+  margin: auto;
+  background-color: red;
 }
 </style>

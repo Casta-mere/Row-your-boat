@@ -10,10 +10,10 @@ class Boat():
 
 
 class Case():
-    def __init__(self, no):
+    def __init__(self, no,state):
         self.item = []
         self.no = no
-        self.state = 0
+        self.state =state
         self.time = 0
         self.number = 0
         self.maxtime = 0
@@ -117,7 +117,7 @@ class Control():
         self.table=str(datetime.datetime.now().strftime("%Y-%m-%d"))
         for i in range(self.num):
             self.boats.append(Boat(arr[i]))
-            self.cases.append(Case(i))
+            self.cases.append(Case(i,arr[i]))
         self.pre_load()
 
 

@@ -1,7 +1,7 @@
 <template>
   <view class="content">
     <image class="logo" src="/static/warning.png"></image>
-    <text>Boat is not Available!</text>
+    <text>Boat is Lost!</text>
   </view>
 </template>
 

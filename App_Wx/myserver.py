@@ -30,7 +30,7 @@ class boat_server():
             client.close()
 
     def con(self):
-        arr = [0, 0, 0, 0, 0, 0]
+        arr = [2, 0, 0, 0, 0, 0]
         self.control=boats.Control(arr)
         
     def handle_request(self,client):

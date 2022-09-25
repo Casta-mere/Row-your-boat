@@ -82,7 +82,8 @@ export default {
       for (let i = 0; i < 6; i++) {
         if (this.states[i] == 0) data[i].status = "Available";
         else {
-          data[i].status = "Unavailable";
+          if (this.states[i] == 1) data[i].status = "Unavailable";
+          else data[i].status = "Lost";
           data[i].image = "/static/img/boats2/Boat" + (i + 1) + ".png";
         }
       }
@@ -113,9 +114,11 @@ export default {
           path: "/pages/Me/boat",
           query: {
             id: product.title[5],
+            rent_time: 0,
+            type: 1,
           },
         });
-      } else {
+      } else if (product.status == "Unavailable") {
         // this.$router.push({
         //   path: "/pages/404/404",
         // });
@@ -131,6 +134,10 @@ export default {
           });
         product.status = "Available";
         product.image = "/static/img/boats/Boat" + product.title[5] + ".png";
+      } else {
+        this.$router.push({
+          path: "/pages/404/404",
+        });
       }
     },
   },
