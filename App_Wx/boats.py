@@ -109,15 +109,17 @@ class Item():
 class Control():
     num = 6  # six boats
 
-    def __init__(self, arr):
+    def __init__(self):
         self.boats = []
         self.cases = []
         self.db=Database_Conn.mysql("Boat")
         self.colunms = "id int,start_time int,end_time int"
         self.table=str(datetime.datetime.now().strftime("%Y-%m-%d"))
+        self.state_table="state"
+        self.arr=list(self.db.get_data(self.state_table))
         for i in range(self.num):
-            self.boats.append(Boat(arr[i]))
-            self.cases.append(Case(i,arr[i]))
+            self.boats.append(Boat(self.arr[i][1]))
+            self.cases.append(Case(i,self.arr[i][1]))
         self.pre_load()
 
 
@@ -158,6 +160,10 @@ class Control():
         return ans
 
     def up_load(self):
+        ans=[]
+        for i in range (self.num):
+            ans.append((i,self.cases[i].state))
+        self.db.update_table(self.state_table,ans)
         self.db.Create_table(self.table,self.colunms)
         data = self.output_all()
         for i in data:
@@ -172,8 +178,11 @@ class Control():
             self.db.Create_table(self.table,self.colunms)
 
     def case(self,no,st,et):
-        self.new_item(no,st)
-        self.end_item(no,et)
+        try:
+            self.new_item(no,st)
+            self.end_item(no,et)
+        except:
+            element=1
 
     def random(self):
         for i in range(self.num):
@@ -190,6 +199,6 @@ class Control():
         return ans
 
 if __name__ == "__main__":
-    control = Control([0, 0, 0, 0, 0, 0])
+    control = Control()
     control.random()
     control.up_load()

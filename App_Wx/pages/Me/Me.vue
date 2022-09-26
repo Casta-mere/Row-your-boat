@@ -31,6 +31,7 @@ export default {
       renderImage: false,
       states: [],
       dialog: false,
+      flag: 1,
     };
   },
   methods: {
@@ -79,6 +80,7 @@ export default {
           status: "",
         },
       ];
+      this.states[5] = 0;
       for (let i = 0; i < 6; i++) {
         if (this.states[i] == 0) data[i].status = "Available";
         else {
@@ -86,6 +88,10 @@ export default {
           else data[i].status = "Lost";
           data[i].image = "/static/img/boats2/Boat" + (i + 1) + ".png";
         }
+      }
+      if (this.flag == 2) {
+        data[5].status = "Lost";
+        data[5].image = "/static/img/boats2/Boat" + 6 + ".png";
       }
       if (action === "refresh") {
         this.productList = [];
@@ -142,6 +148,11 @@ export default {
     },
   },
   onShow() {
+    try {
+      var temp = this.$route.query.id;
+      if (temp == 3) this.flag = 2;
+    } catch {}
+
     setTimeout(() => {
       this.refresh();
     }, 100);

@@ -30,8 +30,7 @@ class boat_server():
             client.close()
 
     def con(self):
-        arr = [2, 0, 0, 0, 0, 0]
-        self.control=boats.Control(arr)
+        self.control=boats.Control()
         
     def handle_request(self,client):
         recv_data = client.recv(9999).decode("utf-8") 

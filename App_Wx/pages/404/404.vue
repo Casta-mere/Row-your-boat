@@ -16,10 +16,16 @@ export default {
     let timer = setTimeout(() => {
       clearTimeout(timer);
       console.log("back to index");
-      uni.switchTab({
-        url: "/pages/Me/Me",
-        animationType: "pop-in",
-        animationDuration: 300
+      // uni.switchTab({
+      //   url: "/pages/Me/Me",
+      //   animationType: "pop-in",
+      //   animationDuration: 300
+      // });
+      this.$router.push({
+        path: "/pages/Me/Me",
+        query:{
+          id: 3,
+        }
       });
     }, 2000);
   },

@@ -46,11 +46,14 @@ export default {
     this.src = "/static/img/boats/Boat" + this.id + ".png";
     if (this.$route.query.type == 1) this.time = this.nowtime();
     else this.time = this.$route.query.time;
-    let timer = setTimeout(() => {
-      clearTimeout(timer);
-      this.paging = true;
-    }, 10000);
+    if (this.id != 2) {
+      let timer = setTimeout(() => {
+        clearTimeout(timer);
+        this.paging = true;
+      }, 10000);
+    }
   },
+
   mounted() {
     let _this = this;
     let timer = setInterval(() => {
@@ -66,17 +69,24 @@ export default {
         let timer3 = setTimeout(() => {
           clearTimeout(timer3);
           if (this.paging) this.warning = true;
-        }, 2000);
+        }, 10000);
       }
-      if (this.paging&&this.warning) {
+      if (this.paging && this.warning) {
         let timer4 = setTimeout(() => {
           clearTimeout(timer4);
-          if (this.paging&this.warning)
-            console.log("You have not replied in 2 minutes!");
-            clearTimeout(timer2);
-        }, 2000);
+          if (this.paging & this.warning)
+            // console.log("You have not replied in 2 minutes!");
+            clearInterval(timer2);
+          this.$router.push({
+            path: "/pages/404/404",
+          });
+        }, 10000);
       }
     }, 1000);
+  },
+  onunload() {
+    clearInterval(timer2);
+    console.log("leave");
   },
   methods: {
     nowtime() {

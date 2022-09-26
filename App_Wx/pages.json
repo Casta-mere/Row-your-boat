@@ -2,7 +2,7 @@
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
-			"navigationBarTitleText": "Boat Renting Server",
+			"navigationBarTitleText": "Boat Renting Manager",
 			"enablePullDownRefresh": true
 		}
 	}, {

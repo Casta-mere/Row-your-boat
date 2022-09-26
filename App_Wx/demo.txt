@@ -1,0 +1,8 @@
+pre:
+run hbuilderx
+
+demo:
+start server
+rent boat#2->back->show data
+rent boat#4->return->show data
+rent boat#6->lost->show dataq
